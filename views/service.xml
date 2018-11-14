@@ -1,0 +1,47 @@
+<odoo>
+  <record model="ir.ui.view" id="service_form_view">
+    <field name="name">pos.order.form.view.inherit</field>
+    <field name="model">pos.order</field>
+    <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+    <field name="arch" type="xml">
+      <header>
+        <button string="Checkout" type="object" name="service_checkout" class="oe_highlight" attrs="{'invisible': [('return_back','=', True)]}"/>
+      </header>
+      <group>
+        <field name="name"/>
+        <field name="checkin"/>
+        <field name="checkout"/>
+        <field name="return_back"/>
+      </group>
+    </field>
+  </record>
+
+
+  <!-- override the automatically generated list view for courts -->
+  <record model="ir.ui.view" id="service_tree_view">
+    <field name="name">pos.order.tree.view.inherit</field>
+    <field name="model">pos.order</field>
+    <field name="arch" type="xml">
+      <tree string="Service Tree" create="false">
+        <field name="name"/>
+        <field name="checkin"/>
+        <field name="checkout"/>
+        <field name="return_back"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="service_list_action">
+    <field name="name">Service Order</field>
+    <field name="res_model">pos.order</field>
+    <!-- <field name="act_window_id" ref="service_tree_view"/> -->
+    <field name="view_id" ref="service_tree_view"/>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[
+        ('rent', '=', True)
+    ]</field>
+  </record>
+
+  <menuitem id="menu_test" parent="point_of_sale.menu_point_of_sale" name="Services Order" action="service_list_action" sequence="1"/>
+</odoo>

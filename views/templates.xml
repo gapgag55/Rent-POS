@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="assets" inherit_id="point_of_sale.assets">
+    <xpath expr="." position="inside">
+      <script type="text/javascript" src="/rent_pos/static/src/js/custom.js"></script>
+    </xpath>
+  </template>
+  <!-- <template id="test">
+    <t t-name="OrderLine">
+      <tr class='client-line' t-att-data-id='order.id'>
+        <td><t t-esc='order.name' /></td>
+        <td><t t-esc='order.checkin' /></td>
+        <td><t t-esc='order.checkout' /></td>
+      </tr>
+    </t>
+  </template> -->
+</odoo>

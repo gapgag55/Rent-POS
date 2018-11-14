@@ -1,0 +1,24 @@
+<templates id="template" xml:space="preserve">
+
+  <t t-name="CheckinButton">
+    <div class='control-button'>
+      <i class="fa fa-sign-out"></i> Checkin
+    </div>
+  </t>
+
+  <t t-name="CheckoutButton">
+    <div class='control-button'>
+      <i class="fa fa-sign-out"></i> Checkout
+    </div>
+  </t>
+
+  <t t-name="ServiceOrdersWidget" t-extend="ClientListScreenWidget">
+    <t t-jquery="div.top-content" t-operation="inner">
+      <span class='button back'>
+        <i class='fa fa-angle-double-left'></i>
+          Cancel
+      </span>
+    </t>
+  </t>
+
+</templates>

@@ -17,7 +17,7 @@ odoo.define('service.order', function (require) {
       return [['rent', '=', true]];
     },
     loaded: function (self, orders) {
-      self.orders = orders
+      self.orders = orders;
     },
   });
 
@@ -50,21 +50,18 @@ odoo.define('service.order', function (require) {
       var self = this;
       this._super();
 
-      // this.renderElement();
-
       this.$('.back').click(function () {
         self.gui.back();
-      });
+      }); 
 
       this.render_services(this.pos.orders)
-      // var partners = this.pos.db.get_partners_sorted(1000);
     },
     render_services: function (orders) {
       var contents = this.$el[0].querySelector('.client-list-contents');
       contents.innerHTML = "";
       for (var i = 0, len = Math.min(orders.length, 1000); i < len; i++) {
 
-        if (!orders[i].rent || orders[i].return_back) continue;
+        if (orders[i].return_back) continue;
 
         var clientline_html = QWeb.render('OrderLine', { widget: this, order: orders[i] });
         var clientline = document.createElement('tbody');
@@ -73,8 +70,6 @@ odoo.define('service.order', function (require) {
 
         contents.appendChild(clientline);
       }
-
-      var self = this;
 
       this.$('.checkout').click(function () {
 
@@ -115,7 +110,14 @@ odoo.define('service.order', function (require) {
   var CheckoutButton = screens.ActionButtonWidget.extend({
     template: 'CheckoutButton',
     button_click: function () {
-      // Your code Here
+      var self = this
+      rpc.query({
+        model: 'pos.order',
+        method: 'retreive_data',
+      }).then(function (data) {
+        self.pos.orders = JSON.parse(data)
+      })
+    
       this.gui.show_screen('service_orders');
     },
   });

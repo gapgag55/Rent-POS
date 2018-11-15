@@ -4,14 +4,8 @@
     <xpath expr="." position="inside">
       <script type="text/javascript" src="/rent_pos/static/src/js/custom.js"></script>
     </xpath>
+    <xpath expr="//link[@id='pos-stylesheet']" position="after">
+        <link rel="stylesheet" href="/rent_pos/static/src/css/style.css" />
+    </xpath>
   </template>
-  <!-- <template id="test">
-    <t t-name="OrderLine">
-      <tr class='client-line' t-att-data-id='order.id'>
-        <td><t t-esc='order.name' /></td>
-        <td><t t-esc='order.checkin' /></td>
-        <td><t t-esc='order.checkout' /></td>
-      </tr>
-    </t>
-  </template> -->
 </odoo>

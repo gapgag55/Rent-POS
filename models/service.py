@@ -15,6 +15,12 @@ class ServiceOrder(models.Model):
       res = super(ServiceOrder, self)._order_fields(ui_order)
       res['rent'] = ui_order.get('rent')
       return res
+      
+    @api.model
+    def update_rent(self, service):
+      service_id = service.pop('id', False)
+      if service_id:
+          self.browse(service_id).write(service)
 
     @api.one
     def service_checkout(self):

@@ -116,9 +116,8 @@ odoo.define('service.order', function (require) {
         method: 'retreive_data',
       }).then(function (data) {
         self.pos.orders = JSON.parse(data)
+        self.gui.show_screen('service_orders');
       })
-    
-      this.gui.show_screen('service_orders');
     },
   });
 
